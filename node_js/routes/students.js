@@ -75,8 +75,8 @@ router.put("/students/:id", async(req,res) => {
     res.json(students);
 });
 router.put("/students/:id/password", async(req,res) => {
-    const student = await student.findByIdAndUpdate(req.params.id, { password: req.body.newPassword });
-    res.json(student);
+    const students = await student.findByIdAndUpdate(req.params.id, { password: req.body.newPassword });
+    res.json(students);
   });
 //delete studnet by id
 router.delete("/students/:id",async(req,res)=> {
