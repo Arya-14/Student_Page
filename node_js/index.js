@@ -1,6 +1,8 @@
 const express= require("express");
 // "start": "nodemon -r esm index.js"
 const studentRoutes= require("./routes/students");
+const userRoutes= require('./routes/users');
+const customFieldRoutes= require('./routes/customFields');
 const mongoose= require("mongoose");
 const authRoute = require('./middleware/auth');
 const cors = require('cors');
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 // Mount the students router on the /students path
 app.use(studentRoutes);
+app.use(userRoutes);
+app.use(customFieldRoutes);
 // Register the signup and login routes
 app.get("/auth", authRoute, (req, res) => {
     res.json({ message: "You are authorized to access me" });
@@ -22,8 +26,6 @@ app.get("/auth", authRoute, (req, res) => {
 // mongodb+srv://arya:tfICNeAhZluox3GJ@cluster0.gtow5cy.mongodb.net/?retryWrites=true&w=majority
 mongoose.connect(process.env.DATABASE,{
     useNewUrlParser:true,
-    // useCreateIndex:true,
-    // useFindAndModify:false,
     useUnifiedTopology:true,
 })
 .then(()=> console.log("DB is connected"))

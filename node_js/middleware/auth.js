@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const student= require('../models/student');
+// const student= require('../models/student');
+const user=require('../models/user');
 const process= require('process');
 require('dotenv').config();
 
@@ -17,12 +18,12 @@ const authenticate = async (req, res, next) => {
   try {
     const decoded = jwt.verify(tokenWithoutBearerPrefix, process.env.JWT_SECRET);
     console.log("code:" ,decoded);
-    const user = await student.findOne({_id:decoded.id});
-    console.log(user);
-    if (!user) {
+    const User = await user.findOne({_id:decoded.id});
+    console.log(User);
+    if (!User) {
       return res.status(401).json({ error: 'Invalid token.' });
     }
-    req.user = user;
+    req.User = User;
     req.decoded=decoded;
     next();
   } catch (error) {
