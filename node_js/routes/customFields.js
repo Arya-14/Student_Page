@@ -19,9 +19,9 @@ Router.post("/customFields", async(req, res)=> {
 
 //update the student by id
 Router.put("/customFields/:id", async(req, res) => {
-    const customField = await customField.findByIdAndUpdate(req.params.id, req.body);
-    if (customField) {
-      res.status(200).json(customField); // Send a 200 status code if the student was updated successfully
+    const customFields = await customField.findByIdAndUpdate(req.params.id, req.body);
+    if (customFields) {
+      res.status(200).json(req.body); // Send a 200 status code if the student was updated successfully
     } else {
       res.status(404).json({ message: "customField not found" }); // Send a 404 status code if the student was not found
     }
