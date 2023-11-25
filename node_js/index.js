@@ -6,6 +6,8 @@ const customFieldRoutes= require('./routes/customFields');
 const mongoose= require("mongoose");
 const authRoute = require('./middleware/auth');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' })
 var bodyParser = require('body-parser');
 require('dotenv').config();
 const app= express();

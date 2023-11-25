@@ -8,6 +8,16 @@ const studentSchema= mongoose.Schema({
     ParentsName: {type: String},
     DOB: {type: Date},
     Id: {type: Number},
+    Image: {type: String},
+    CustomFields: [
+        {
+          Group: { type: String },
+          Section: { type: String },
+          Label: { type: String },
+          Type: { type: String },
+          Value: { type: String },
+        },
+      ],
 });
 const student= mongoose.model("student",studentSchema);
 
